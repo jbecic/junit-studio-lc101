@@ -22,14 +22,30 @@ public class BalancedBrackets {
      * @return true if balanced, false otherwise
      */
     public static boolean hasBalancedBrackets(String str) {
+        char [] chars = str.toCharArray();
+        if (chars.length == 0) {
+            throw new IllegalArgumentException("Empty strings do not have brackets.");
+        }
+
         int brackets = 0;
+        int openingBracket = 0;
+        int closingBracket = 0;
         for (char ch : str.toCharArray()) {
             if (ch == '[') {
                 brackets++;
+                openingBracket++;
             } else if (ch == ']') {
                 brackets--;
+                closingBracket++;
+                if (openingBracket == 0) {
+                    throw new IllegalArgumentException("Mis-nesting brackets have been detected.");
+                }
+                if (brackets < 0) {
+                    throw new IllegalArgumentException("Mis-nesting brackets have been detected.");
+                }
             }
         }
+
         return brackets == 0;
     }
 }
