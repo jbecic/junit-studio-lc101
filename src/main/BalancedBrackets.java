@@ -27,6 +27,10 @@ public class BalancedBrackets {
             throw new IllegalArgumentException("Empty strings do not have brackets.");
         }
 
+        if (!str.contains("[") && !str.contains("]")) {
+            return false;
+        }
+
         int brackets = 0;
         int openingBracket = 0;
         int closingBracket = 0;
